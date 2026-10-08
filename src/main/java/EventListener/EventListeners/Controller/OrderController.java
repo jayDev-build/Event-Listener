@@ -14,6 +14,6 @@ public class OrderController {
 
     @PostMapping("/")
     public void createOrder(@RequestBody Order order){
-        orderService.createOrder(order.orderID);
+        orderService.createOrder(order.orderID, order.amount);
     }
 }

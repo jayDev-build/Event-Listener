@@ -15,8 +15,8 @@ public class OrderService {
         this.eventPublisher = applicationEventPublisher;
     }
 
-    public void createOrder(String orderId){
+    public void createOrder(String orderId, Integer amount){
         System.out.println("Order created \norder Id: " + orderId);
-        eventPublisher.publishEvent(new CreateOrder(orderId));
+        eventPublisher.publishEvent(new CreateOrder(orderId, amount));
     }
 }

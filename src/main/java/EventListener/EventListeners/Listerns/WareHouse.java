@@ -10,12 +10,22 @@ import org.springframework.stereotype.Component;
 public class WareHouse {
 
     @Async
-    @EventListener
+    @EventListener(condition = "#order.amount < 5000")
     @Order(1)
     public void newOrderAlert(CreateOrder order) throws InterruptedException {
         System.out.println("Alerting WareHouse for new Order Initiated: " + order.orderId());
         Thread.sleep(500);
         System.out.println("Alerting WareHouse for new Order Completed: " + order.orderId());
+
+    }
+
+    @Async
+    @EventListener(condition = "#order.amount >= 5000")
+    @Order(1)
+    public void newPremiumOrderAlert(CreateOrder order) throws InterruptedException {
+        System.out.println("Alerting WareHouse for new Premium Order Initiated: " + order.orderId());
+        Thread.sleep(500);
+        System.out.println("Alerting WareHouse for new Premium Order Completed: " + order.orderId());
 
     }
 }
